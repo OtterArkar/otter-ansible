@@ -1,8 +1,8 @@
 - hosts: localhost
   vars:
     BASE_URL: "{{ lookup('ansible.builtin.env', 'HOME') }}/Documents/Projects/AnsibleTest/"
-    source_key: "./.ssh/id_rsa"
-    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+    source_key: "./.ssh/id_ed25519"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
     OTTERDEV: "otterdev-site"
     USER: "{{ lookup('env', 'USER') }}"
     YOU: "arkar"
