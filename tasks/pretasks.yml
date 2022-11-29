@@ -1,1 +1,6 @@
-# do apt install
+- name: Basic Installation Started
+  shell: "apt update && apt upgrade -y"
+  become: true
+  become_user: root
+  become_method: sudo
+  tags: basic-installation

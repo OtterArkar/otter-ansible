@@ -4,6 +4,7 @@
     source_key: "./.ssh/id_rsa"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     OTTERDEV: "otterdev-site"
+    USER: "{{ lookup('env', 'USER') }}"
   # pre_tasks:
   #   - name: Running  "pacman -Sy"
   #     become: true
@@ -11,7 +12,8 @@
   #       update_cache: yes
 
   tasks:
-    - include: tasks/pretasks.yml
-    - include: tasks/node-setup.yml
+    # - include: tasks/pretasks.yml
+    # - include: tasks/node-setup.yml
     # - include: tasks/otter-repo.yml
-    - include: tasks/test.yml
+    # - include: tasks/test.yml
+    - include: tasks/zsh.yml
