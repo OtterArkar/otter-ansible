@@ -2,12 +2,16 @@
   become: true
   apt:
     name: ["nodejs", "npm"]
+  ansible.builtin.debug:
+    msg: [ 🦦 Info ] Installing nodejs and npm
   tags:
     - install
     - node
 
 - name: npmjs prefix
   shell: mkdir -p ~/.local/.npm-global
+  ansible.builtin.debug:
+    msg: [ 🦦 Info ] Adding npmjs prefix
   tags:
     - install
     - node
@@ -31,11 +35,9 @@
     - node
     - npm-path
 
-- name: Install NVM
-  shell: "curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash && source ~/.bashrc && zsh"
-
-- name: Install correct version of Node
-  shell: "nvm install --lts"
-  tags:
+- name: Install latest version of Node
+  shell: "npx n latest"
+  ansible.builtin.debug:
+    msg: [ 🦦 Info ] Installing latest version of node
     - install
     - node
