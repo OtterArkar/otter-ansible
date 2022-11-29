@@ -1,7 +1,8 @@
 - hosts: localhost
   vars:
-    BASE_URL: "~/Documents/Projects/AnsibleTest/"
-
+    BASE_URL: "{{ lookup('ansible.builtin.env', 'HOME') }}/Documents/Projects/AnsibleTest/"
+    source_key: "./.ssh/id_rsa"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     OTTERDEV: "otterdev-site"
   # pre_tasks:
   #   - name: Running  "pacman -Sy"
@@ -10,5 +11,7 @@
   #       update_cache: yes
 
   tasks:
-    # - include: tasks/node-setup.yml
-    - include: tasks/otter-repo.yml
+    - include: tasks/pretasks.yml
+    - include: tasks/node-setup.yml
+    # - include: tasks/otter-repo.yml
+    - include: tasks/test.yml
