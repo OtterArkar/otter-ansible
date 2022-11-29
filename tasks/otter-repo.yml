@@ -4,6 +4,7 @@
   register: otter
   tags:
     - otter-projects
+  become_user : "{{ YOU }}"
 
 - name: My App
   ansible.builtin.git:
@@ -13,6 +14,7 @@
     dest: "{{ BASE_URL }}/myapp"
   tags:
     - clone-repos
+  become_user : "{{ YOU }}"
 
 - name: Otterdev-site
   ansible.builtin.git:
@@ -22,12 +24,14 @@
     dest: "{{ BASE_URL }}/otterdev-site"
   tags:
     - clone-repos
+  become_user : "{{ YOU }}"
 
 - name: Setting Otterdev-site envs
   shell: "cd ./envs/otterdev-site && cp .env {{ BASE_URL }}/otterdev-site 
   && ansible-vault decrypt {{ BASE_URL }}otterdev-site/.env"
   tags:
     - set-envs
+  become_user : "{{ YOU }}"
 
 - name: MMC
   ansible.builtin.git:
@@ -37,14 +41,16 @@
     dest: "{{ BASE_URL }}/mmc"
   tags:
     - clone-repos
+  become_user : "{{ YOU }}"
 
 - name: Setting MMC Regency vars 
   shell: "cd ./envs/mmc/regency && mv .env {{ BASE_URL }}/mmc/apps/mmc && ansible-vault decrypt {{ BASE_URL }}mmc/apps/mmc/.env"
   tags:
     - set-envs
+  become_user : "{{ YOU }}"
 
 - name: Setting MMC Studio vars
   shell: "cd ./envs/mmc/studio && mv .env {{ BASE_URL }}/mmc/apps/studio && ansible-vault decrypt {{ BASE_URL }}mmc/apps/studio/.env"
   tags:
     - set-envs
-
+  become_user : "{{ YOU }}"

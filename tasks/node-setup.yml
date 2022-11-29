@@ -31,16 +31,11 @@
     - node
     - npm-path
 
-- name: Install N
-  npm:
-    name: n
-    global: yes
-  tags:
-    - install
-    - node
+- name: Install NVM
+  shell: "curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash && source ~/.bashrc && zsh"
 
 - name: Install correct version of Node
-  shell: n 16
+  shell: "nvm install --lts"
   tags:
     - install
     - node

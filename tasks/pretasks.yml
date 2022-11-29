@@ -1,5 +1,6 @@
 - name: Basic Installation Started
   shell: "apt update && apt upgrade -y"
+  shell : "apt install curl wget git vim -y"
   become: true
   become_user: root
   become_method: sudo
