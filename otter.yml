@@ -13,9 +13,9 @@
   #       update_cache: yes
 
   tasks:
-    # - include: tasks/pretasks.yml
+    - include: tasks/pretasks.yml
+    - include: tasks/zsh.yml
     - include: tasks/node-setup.yml
+    - include: tasks/npm-packages.yml
     # - include: tasks/otter-repo.yml
-    # - include: tasks/test.yml
-    # - include: tasks/npm-packages.yml
-    # - include: tasks/zsh.yml
+    - include: tasks/test.yml
