@@ -1,0 +1,50 @@
+- name: Otter Projects
+  stat:
+    path: "{{ BASE_URL }}"
+  register: otter
+  tags:
+    - otter-projects
+
+- name: My App
+  ansible.builtin.git:
+    repo: "git@github.com:OtterArkar/my-app.git"
+    clone: yes
+    update: yes
+    dest: "{{ BASE_URL }}/myapp"
+  tags:
+    - clone-repos
+
+- name: Otterdev-site
+  ansible.builtin.git:
+    repo: "git@github.com:otterdev-io/otterdev-site.git"
+    clone: yes
+    update: yes
+    dest: "{{ BASE_URL }}/otterdev-site"
+  tags:
+    - clone-repos
+
+- name: Setting Otterdev-site envs
+  shell: "cd ./envs/otterdev-site && cp .env {{ BASE_URL }}/otterdev-site 
+  && ansible-vault decrypt {{ BASE_URL }}otterdev-site/.env"
+  tags:
+    - set-envs
+
+- name: MMC
+  ansible.builtin.git:
+    repo: "https://github.com/otterdev-io/mmc"
+    clone: yes
+    update: yes
+    dest: "{{ BASE_URL }}/mmc"
+  tags:
+    - clone-repos
+
+- name: Setting MMC Regency vars 
+  shell: "cd ./envs/mmc/regency && mv .env {{ BASE_URL }}/mmc/apps/mmc && ansible-vault decrypt {{ BASE_URL }}mmc/apps/mmc/.env"
+  tags:
+    - set-envs
+
+- name: Setting MMC Studio vars
+  shell: "cd ./envs/mmc/studio && mv .env {{ BASE_URL }}/mmc/apps/studio && ansible-vault decrypt {{ BASE_URL }}mmc/apps/studio/.env"
+  tags:
+    - set-envs
+

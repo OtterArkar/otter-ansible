@@ -1,0 +1,14 @@
+- hosts: localhost
+  vars:
+    BASE_URL: "~/Documents/Projects/AnsibleTest/"
+
+    OTTERDEV: "otterdev-site"
+  # pre_tasks:
+  #   - name: Running  "pacman -Sy"
+  #     become: true
+  #     pacman:
+  #       update_cache: yes
+
+  tasks:
+    # - include: tasks/node-setup.yml
+    - include: tasks/otter-repo.yml
