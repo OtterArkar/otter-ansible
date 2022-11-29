@@ -5,7 +5,7 @@
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
     OTTERDEV: "otterdev-site"
     USER: "{{ lookup('env', 'USER') }}"
-    YOU: "arkar"
+    YOU: "root"
   # pre_tasks:
   #   - name: Running  "pacman -Sy"
   #     become: true
